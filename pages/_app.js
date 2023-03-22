@@ -5,6 +5,7 @@ import React from "react";
 import "./App.css";
 import { useRouter } from "next/router";
 import PetForm from "../components/Form";
+import Home from ".//index.js";
 
 // import { MapContainer, TileLayer } from "react-leaflet";
 
@@ -31,10 +32,11 @@ export default function App() {
       <Head>
         <title>Capstone Project</title>
       </Head>
+      <Home />
       <button type="button">Lost</button>
       <button type="button">Located</button>
       <Map />
-      <button type="button" onClick={() => router.push("/components/Form")}>
+      <button type="button" onClick={() => router.push()}>
         +
       </button>
       <PetForm />
