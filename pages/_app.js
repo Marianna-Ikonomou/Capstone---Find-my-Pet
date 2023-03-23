@@ -3,8 +3,8 @@ import Map from "../components/Map";
 import React from "react";
 import "./App.css";
 import { useRouter } from "next/router";
+import Home from "./index.js";
 // import PetForm from "../components/Form";
-import Home from ".//index.js";
 
 // import { MapContainer, TileLayer } from "react-leaflet";
 
@@ -30,13 +30,18 @@ export default function App() {
       <Head>
         <title>Capstone Project</title>
       </Head>
+
+      <section>
+        <button type="button">Lost</button>
+        <button type="button">Located</button>
+      </section>
+      <main>
+        <Map />
+        <button type="button" onClick={() => router.push()}>
+          +
+        </button>
+      </main>
       <Home />
-      <button type="button">Lost</button>
-      <button type="button">Located</button>
-      <Map />
-      <button type="button" onClick={() => router.push()}>
-        +
-      </button>
     </>
   );
 }

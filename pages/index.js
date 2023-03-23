@@ -1,5 +1,5 @@
 import Heading from "../components/Heading";
-import PetForm from "../components/Form/index";
+import PetForm from "../components/Form/PetForm";
 // import Map from "../components/Map";
 
 export default function Home() {
@@ -8,10 +8,10 @@ export default function Home() {
   }
 
   return (
-    <main>
+    <>
       <Heading>AppName</Heading>
       <PetForm onSubmit={handleAddProduct} />
       {/* <Map /> */}
-    </main>
+    </>
   );
 }

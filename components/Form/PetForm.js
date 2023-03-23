@@ -1,4 +1,4 @@
-import { StyledForm, StyledHeading, StyledLabel } from "../Form/Form.styled.js";
+import { StyledForm, StyledHeading, StyledLabel } from "./Form.styled.js";
 import { useState } from "react";
 
 export default function PetForm({ onSubmit }) {
@@ -61,7 +61,7 @@ export default function PetForm({ onSubmit }) {
         <ul>
           {submissions.map((submission, index) => (
             <li key={index}>
-              <img src={URL.createObjectURL(submission.photo)} alt="Pet" />
+              <img src={URL.createObjectURL(submission.photo.data)} alt="Pet" />
               <p>Name: {submission.name}</p>
               <p>Description: {submission.description}</p>
               <p>Contact: {submission.contact}</p>
