@@ -1,10 +1,9 @@
-import GlobalStyle from "../styles";
 import Head from "next/head";
 import Map from "../components/Map";
 import React from "react";
 import "./App.css";
 import { useRouter } from "next/router";
-import PetForm from "../components/Form";
+// import PetForm from "../components/Form";
 import Home from ".//index.js";
 
 // import { MapContainer, TileLayer } from "react-leaflet";
@@ -28,7 +27,6 @@ export default function App() {
 
   return (
     <>
-      <GlobalStyle />
       <Head>
         <title>Capstone Project</title>
       </Head>
@@ -39,7 +37,6 @@ export default function App() {
       <button type="button" onClick={() => router.push()}>
         +
       </button>
-      <PetForm />
     </>
   );
 }

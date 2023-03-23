@@ -1,14 +1,50 @@
 import { StyledForm, StyledHeading, StyledLabel } from "../Form/Form.styled.js";
+import { useState } from "react";
 
 export default function PetForm({ onSubmit }) {
+  const [photoUrl, setPhotoUrl] = useState(null);
+  const [submissions, setSubmissions] = useState([]);
+
+  const handleSubmit = (event) => {
+    if (event) {
+      event.preventDefault();
+    }
+
+    const photo = document.getElementById("photo").files[0];
+    const name = document.getElementById("name").value;
+    const description = document.getElementById("description").value;
+    const contact = document.getElementById("contact").value;
+
+    console.log(
+      `Submitting photo: ${photo} name: ${name} description: ${description} contact: ${contact}`
+    );
+
+    const newSubmission = { photo, name, description, contact };
+    setSubmissions([...submissions, newSubmission]);
+
+    onSubmit(newSubmission);
+  };
+
+  const handlePhotoChange = (event) => {
+    const file = event.target.files[0];
+    const url = URL.createObjectURL(file);
+    setPhotoUrl(url);
+  };
+
   return (
-    <StyledForm onSubmit={onSubmit}>
+    <StyledForm>
       <fieldset>
         <legend>
           <StyledHeading>Lost</StyledHeading>
         </legend>
         <StyledLabel htmlFor="photo">Photo: </StyledLabel>
-        <input type="file" id="photo" name="photo" accept="image/*" />
+        <input
+          type="file"
+          id="photo"
+          name="photo"
+          accept="image/*"
+          onChange={handlePhotoChange}
+        />
 
         <StyledLabel htmlFor="name">Pets Name:</StyledLabel>
         <input type="text" id="name" name="name" />
@@ -19,7 +55,20 @@ export default function PetForm({ onSubmit }) {
         <StyledLabel htmlFor="contact">Contact Information:</StyledLabel>
         <input type="text" id="contact" name="contact" />
       </fieldset>
-      <button type="submit">Post</button>
+      <button onClick={handleSubmit}>Post</button>
+
+      {submissions.length > 0 && (
+        <ul>
+          {submissions.map((submission, index) => (
+            <li key={index}>
+              <img src={URL.createObjectURL(submission.photo)} alt="Pet" />
+              <p>Name: {submission.name}</p>
+              <p>Description: {submission.description}</p>
+              <p>Contact: {submission.contact}</p>
+            </li>
+          ))}
+        </ul>
+      )}
     </StyledForm>
   );
 }
