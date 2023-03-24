@@ -10,16 +10,18 @@ export default function PetForm({ onSubmit }) {
       event.preventDefault();
     }
 
+    const lostLocated = document.getElementById("lostLocated").value;
     const photo = document.getElementById("photo").files[0];
     const name = document.getElementById("name").value;
     const description = document.getElementById("description").value;
     const contact = document.getElementById("contact").value;
 
     console.log(
-      `Submitting photo: ${photo} name: ${name} description: ${description} contact: ${contact}`
+      `Submitting lostLocated: ${lostLocated} photo: ${photo} name: ${name} description: ${description} contact: ${contact}`
     );
 
     const newSubmission = {
+      lostLocated,
       photo: URL.createObjectURL(photo),
       name,
       description,
@@ -51,6 +53,9 @@ export default function PetForm({ onSubmit }) {
           onChange={handlePhotoChange}
         />
 
+        <StyledLabel htmlFor="lostLocated">Lost/Located:</StyledLabel>
+        <input type="text" id="lostLocated" name="lostLocated" />
+
         <StyledLabel htmlFor="name">Pets Name:</StyledLabel>
         <input type="text" id="name" name="name" />
 
@@ -66,9 +71,16 @@ export default function PetForm({ onSubmit }) {
         <ul class="no-bullets">
           {submissions.map((submission, index) => (
             <li key={index}>
+              <p>
+                <h1>{submission.lostLocated}</h1>
+              </p>
               <img src={submission.photo} alt="Pet" />
-              <p>Name: {submission.name}</p>
-              <p>Description: {submission.description}</p>
+              <p>
+                <h2>{submission.name}</h2>
+              </p>
+              <p>
+                <h4>Description: {submission.description}</h4>
+              </p>
               <p>Contact: {submission.contact}</p>
             </li>
           ))}

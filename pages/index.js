@@ -9,7 +9,7 @@ export default function Home() {
 
   return (
     <>
-      <Heading>AppName</Heading>
+      <Heading>Find my Pet (working title)</Heading>
       <PetForm onSubmit={handleAddProduct} />
       {/* <Map /> */}
     </>
