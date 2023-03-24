@@ -2,8 +2,6 @@
   box-sizing: border-box;
   align-items: center;
   justify-content: center;
-  padding-top: 5px;
-  padding-bottom: 5px;
 }
 
 .App {
@@ -60,9 +58,15 @@ ul {
 
 .no-bullets {
   list-style-type: none;
+  padding: 50px;
 }
 
 fieldset,
 input {
   border-radius: 6px;
+}
+
+Map {
+  width: 40%;
+  height: 40%;
 }

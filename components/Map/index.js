@@ -1,12 +1,15 @@
-import useSWR from "swr";
+import React from "react";
+import { MapContainer, TileLayer } from "react-leaflet";
 
-const fetcher = async (url) => {
-  const res = await fetch(url);
-  return res.json();
-};
-export default function Map({ Component, pageProps }) {
-  const { data, error } = useSWR("https://api.openstreetmap.org", fetcher);
+function Map() {
+  const center = [51.505, -0.09];
+  const zoom = 13;
 
-  if (error) return <div>Failed to load Map</div>;
-  if (!data) return <div>Loading...</div>;
+  return (
+    <MapContainer center={center} zoom={zoom}>
+      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+    </MapContainer>
+  );
 }
+
+export default Map;
