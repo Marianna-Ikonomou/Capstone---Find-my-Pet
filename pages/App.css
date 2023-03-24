@@ -21,7 +21,7 @@
 }
 button {
   align-items: center;
-  padding: 5px;
+  padding: 6px;
   border-radius: 6px;
   box-shadow: 1px 1px 2px rgb(94, 147, 155);
   background-color: rgb(19, 116, 128);
@@ -45,5 +45,6 @@ main {
 section {
   display: flex;
   -ms-flex-item-align: auto;
+
   padding-top: 40px;
 }

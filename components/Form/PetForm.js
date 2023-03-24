@@ -19,7 +19,12 @@ export default function PetForm({ onSubmit }) {
       `Submitting photo: ${photo} name: ${name} description: ${description} contact: ${contact}`
     );
 
-    const newSubmission = { photo, name, description, contact };
+    const newSubmission = {
+      photo: URL.createObjectURL(photo),
+      name,
+      description,
+      contact,
+    };
     setSubmissions([...submissions, newSubmission]);
 
     onSubmit(newSubmission);
@@ -61,7 +66,7 @@ export default function PetForm({ onSubmit }) {
         <ul>
           {submissions.map((submission, index) => (
             <li key={index}>
-              <img src={URL.createObjectURL(submission.photo.data)} alt="Pet" />
+              <img src={submission.photo} alt="Pet" />
               <p>Name: {submission.name}</p>
               <p>Description: {submission.description}</p>
               <p>Contact: {submission.contact}</p>
