@@ -7,6 +7,6 @@ const fetcher = async (url) => {
 export default function Map({ Component, pageProps }) {
   const { data, error } = useSWR("https://api.openstreetmap.org", fetcher);
 
-  if (error) return <div>Failed to load data</div>;
+  if (error) return <div>Failed to load Map</div>;
   if (!data) return <div>Loading...</div>;
 }

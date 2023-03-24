@@ -48,3 +48,21 @@ section {
 
   padding-top: 40px;
 }
+
+ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(222, 242, 248);
+  color: rgb(1, 34, 47);
+  border-radius: 10px;
+}
+
+.no-bullets {
+  list-style-type: none;
+}
+
+fieldset,
+input {
+  border-radius: 6px;
+}

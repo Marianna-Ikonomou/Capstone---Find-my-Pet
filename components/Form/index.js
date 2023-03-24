@@ -63,7 +63,7 @@ export default function PetForm({ onSubmit }) {
       <button onClick={handleSubmit}>Post</button>
 
       {submissions.length > 0 && (
-        <ul>
+        <ul class="no-bullets">
           {submissions.map((submission, index) => (
             <li key={index}>
               <img src={submission.photo} alt="Pet" />
