@@ -3,6 +3,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import Home from "./index.js";
 import "./App.css";
+import PlussButton from "../components/Buttons/buttons.js";
 
 // import SimpleMap from "../components/Map/googleMap.js";
 // import Map from "../components/Map/index.js";
@@ -22,12 +23,15 @@ export default function App() {
       </section>
 
       <main>
-        <img src="pages/img/HHmap.png" width="300" height="350" />
-        <button type="button" onClick={() => router.push()}>
-          +
-        </button>
+        <img src="img/HHmap.png" width="300" height="350" />
+
+        <PlussButton />
       </main>
       <Home />
     </>
   );
 }
+
+/*    <button type="button" onClick={() => router.push()}>
+          +
+        </button> */

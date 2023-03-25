@@ -10,8 +10,9 @@ export default function Home() {
   return (
     <>
       <Heading>Find my Pet (working title)</Heading>
-      <PetForm onSubmit={handleAddProduct} />
+
       {/* <Map /> */}
     </>
   );
 }
+//<PetForm onSubmit={handleAddProduct} />

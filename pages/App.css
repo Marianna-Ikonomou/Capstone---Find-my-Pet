@@ -43,8 +43,7 @@ main {
 section {
   display: flex;
   -ms-flex-item-align: auto;
-
-  padding-top: 40px;
+  padding-top: 80px;
 }
 
 ul {
