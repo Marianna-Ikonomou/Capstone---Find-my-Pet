@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import Home from "./index.js";
 import "./App.css";
 import PlussButton from "../components/Buttons/buttons.js";
-import Image from "next/image";
 
 // import SimpleMap from "../components/Map/googleMap.js";
 // import Map from "../components/Map/index.js";
@@ -25,7 +24,7 @@ export default function App() {
 
       <main>
         <p>
-          <Image
+          <img
             src="https://xixerone.com/en/wp-content/uploads/sites/2/2023/01/Hamburg-Altstadt-Accommodation-Map.jpg"
             width="300"
             height="350"
