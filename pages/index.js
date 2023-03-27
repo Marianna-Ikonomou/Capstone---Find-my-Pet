@@ -3,9 +3,7 @@ import Heading from "../components/Heading";
 // import Map from "../components/Map";
 
 export default function Home() {
-  async function handleAddProduct(event) {
-    event.preventDefault();
-  }
+  async function handleAddProduct() {}
 
   return (
     <>
