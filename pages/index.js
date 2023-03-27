@@ -8,8 +8,6 @@ export default function Home() {
   return (
     <>
       <Heading>Find my Pet (working title)</Heading>
-
-      {/* <Map /> */}
     </>
   );
 }
