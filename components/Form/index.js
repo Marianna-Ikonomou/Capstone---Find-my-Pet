@@ -42,6 +42,13 @@ export default function PetForm({ onSubmit }) {
   return (
     <StyledForm>
       <fieldset>
+        <p>
+          <img
+            src="https://xixerone.com/en/wp-content/uploads/sites/2/2023/01/Hamburg-Altstadt-Accommodation-Map.jpg"
+            width="200"
+            height="220"
+          />
+        </p>
         <legend>
           <StyledHeading>Lost</StyledHeading>
         </legend>
