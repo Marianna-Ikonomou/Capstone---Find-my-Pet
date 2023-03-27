@@ -57,7 +57,9 @@ ul {
 
 .no-bullets {
   list-style-type: none;
-  padding: 50px;
+  padding: 25px;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
 fieldset,

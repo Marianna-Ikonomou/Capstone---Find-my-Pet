@@ -41,14 +41,14 @@ export default function PetForm({ onSubmit }) {
 
   return (
     <StyledForm>
+      <p>
+        <img
+          src="https://xixerone.com/en/wp-content/uploads/sites/2/2023/01/Hamburg-Altstadt-Accommodation-Map.jpg"
+          width="200"
+          height="220"
+        />
+      </p>
       <fieldset>
-        <p>
-          <img
-            src="https://xixerone.com/en/wp-content/uploads/sites/2/2023/01/Hamburg-Altstadt-Accommodation-Map.jpg"
-            width="200"
-            height="220"
-          />
-        </p>
         <legend>
           <StyledHeading>Lost</StyledHeading>
         </legend>
@@ -82,7 +82,7 @@ export default function PetForm({ onSubmit }) {
               <p>
                 <h1>{submission.lostLocated}</h1>
               </p>
-              <img src={submission.photo} alt="Pet" />
+              <img src={submission.photo} alt="Pet" width="200" height="150" />
               <p>
                 <h2>{submission.name}</h2>
               </p>
