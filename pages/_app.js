@@ -23,14 +23,6 @@ export default function App() {
       </section>
 
       <main>
-        <p>
-          <img
-            src="https://xixerone.com/en/wp-content/uploads/sites/2/2023/01/Hamburg-Altstadt-Accommodation-Map.jpg"
-            width="300"
-            height="350"
-            alt="Picture of a city map"
-          />
-        </p>
         <PlussButton />
       </main>
       <Home />
@@ -41,3 +33,13 @@ export default function App() {
 /*    <button type="button" onClick={() => router.push()}>
           +
         </button> */
+
+/*
+            <p>
+          <img
+            src="https://xixerone.com/en/wp-content/uploads/sites/2/2023/01/Hamburg-Altstadt-Accommodation-Map.jpg"
+            width="300"
+            height="350"
+            alt="Picture of a city map"
+          />
+        </p>*/

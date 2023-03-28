@@ -41,14 +41,6 @@ export default function PetForm({ onSubmit }) {
 
   return (
     <StyledForm>
-      <p>
-        <img
-          src="https://xixerone.com/en/wp-content/uploads/sites/2/2023/01/Hamburg-Altstadt-Accommodation-Map.jpg"
-          width="200"
-          height="220"
-          alt="picture of a city map"
-        />
-      </p>
       <fieldset>
         <legend>
           <StyledHeading>Lost</StyledHeading>
@@ -98,3 +90,13 @@ export default function PetForm({ onSubmit }) {
     </StyledForm>
   );
 }
+
+/*
+<p>
+        <img
+          src="https://xixerone.com/en/wp-content/uploads/sites/2/2023/01/Hamburg-Altstadt-Accommodation-Map.jpg"
+          width="200"
+          height="220"
+          alt="picture of a city map"
+        /> 
+      </p> */
