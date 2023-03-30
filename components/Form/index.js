@@ -1,6 +1,7 @@
 import { StyledForm, StyledHeading, StyledLabel } from "./Form.styled.js";
 import { useState } from "react";
 import React from "react";
+import Image from "next/image.js";
 
 export default function PetForm({ onSubmit }) {
   const [photoUrl, setPhotoUrl] = useState(null);
@@ -75,7 +76,12 @@ export default function PetForm({ onSubmit }) {
               <p>
                 <h1>{submission.lostLocated}</h1>
               </p>
-              <img src={submission.photo} alt="Pet" width="200" height="150" />
+              <Image
+                src={submission.photo}
+                alt="Pet"
+                width="200"
+                height="150"
+              />
               <p>
                 <h2>{submission.name}</h2>
               </p>
@@ -90,13 +96,3 @@ export default function PetForm({ onSubmit }) {
     </StyledForm>
   );
 }
-
-/*
-<p>
-        <img
-          src="https://xixerone.com/en/wp-content/uploads/sites/2/2023/01/Hamburg-Altstadt-Accommodation-Map.jpg"
-          width="200"
-          height="220"
-          alt="picture of a city map"
-        /> 
-      </p> */

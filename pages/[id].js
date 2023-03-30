@@ -1,4 +1,4 @@
-/* import PetForm from "../components/Form";
+import PetForm from "../components/Form";
 import { useRouter } from "next/router";
 
 export default function PetDetailsPage() {
