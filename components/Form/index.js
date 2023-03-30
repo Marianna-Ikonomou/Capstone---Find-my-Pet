@@ -1,10 +1,14 @@
 import { StyledForm, StyledHeading, StyledLabel } from "./Form.styled.js";
 import { useState } from "react";
 import React from "react";
+import Image from "next/image";
 
 export default function PetForm({ onSubmit }) {
   const [photoUrl, setPhotoUrl] = useState(null);
-  const [submissions, setSubmissions] = useState([]);
+  const [submissions, setSubmissions] = useState(() => {
+    const storedSubmissions = localStorage.getItem("submissions");
+    return storedSubmissions ? JSON.parse(storedSubmissions) : [];
+  });
 
   const handleSubmit = (event) => {
     if (event) {
@@ -17,10 +21,6 @@ export default function PetForm({ onSubmit }) {
     const description = document.getElementById("description").value;
     const contact = document.getElementById("contact").value;
 
-    console.log(
-      `Submitting lostLocated: ${lostLocated} photo: ${photo} name: ${name} description: ${description} contact: ${contact}`
-    );
-
     const newSubmission = {
       lostLocated,
       photo: URL.createObjectURL(photo),
@@ -29,6 +29,10 @@ export default function PetForm({ onSubmit }) {
       contact,
     };
     setSubmissions([...submissions, newSubmission]);
+    localStorage.setItem(
+      "submissions",
+      JSON.stringify([...submissions, newSubmission])
+    );
 
     onSubmit(newSubmission);
   };
@@ -36,6 +40,7 @@ export default function PetForm({ onSubmit }) {
   const handlePhotoChange = (event) => {
     const file = event.target.files[0];
     const url = URL.createObjectURL(file);
+
     setPhotoUrl(url);
   };
 
@@ -75,7 +80,14 @@ export default function PetForm({ onSubmit }) {
               <p>
                 <h1>{submission.lostLocated}</h1>
               </p>
-              <img src={submission.photo} alt="Pet" width="200" height="150" />
+              {submission.photo && (
+                <Image
+                  src={submission.photo}
+                  alt="Pet"
+                  width="200"
+                  height="150"
+                />
+              )}
               <p>
                 <h2>{submission.name}</h2>
               </p>
@@ -90,13 +102,3 @@ export default function PetForm({ onSubmit }) {
     </StyledForm>
   );
 }
-
-/*
-<p>
-        <img
-          src="https://xixerone.com/en/wp-content/uploads/sites/2/2023/01/Hamburg-Altstadt-Accommodation-Map.jpg"
-          width="200"
-          height="220"
-          alt="picture of a city map"
-        /> 
-      </p> */
