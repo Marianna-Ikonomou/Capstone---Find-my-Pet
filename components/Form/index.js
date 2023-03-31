@@ -23,7 +23,7 @@ export default function PetForm({ onSubmit }) {
 
     const newSubmission = {
       lostLocated,
-      photo: URL.createObjectURL(photo),
+      photo: `https://res.cloudinary.com/your-cloud-name/image/upload/${photo.public_id}`,
       name,
       description,
       contact,
