@@ -4,13 +4,21 @@ import React, { useContext } from "react";
 import Image from "next/image";
 import { CldImage, CldOgImage } from "next-cloudinary";
 import { StateContext } from "../../context/state.js";
-import { CldUploadButton } from "next-cloudinary";
+import { createClient } from "next-cloudinary";
 
 export default function PetForm({ onSubmit }) {
   const [photoUrl, setPhotoUrl] = useState(null);
   const [submissions, setSubmissions] = useContext(StateContext);
 
-  const handleSubmit = (event) => {
+  const cloudinary = createClient({
+    cloud: {
+      cloudName: "dqkllpzwy",
+      apiKey: "186634241844163",
+      apiSecret: "bIg8N0waTTc-2wVp0I4-Z4fXc5A",
+    },
+  });
+
+  const handleSubmit = async (event) => {
     if (event) {
       event.preventDefault();
     }
@@ -21,9 +29,15 @@ export default function PetForm({ onSubmit }) {
     const description = document.getElementById("description").value;
     const contact = document.getElementById("contact").value;
 
+    const result = await cloudinary.uploader.upload(photo, {
+      folder: "my_folder",
+      use_filename: true,
+      unique_filename: false,
+    });
+
     const newSubmission = {
       lostLocated,
-      photo: `https://res.cloudinary.com/dqkllpzwy/image/upload/${photo.public_id}`,
+      photo: result.secure_url,
       name,
       description,
       contact,
@@ -58,7 +72,6 @@ export default function PetForm({ onSubmit }) {
           accept="image/*"
           onChange={handlePhotoChange}
         />
-        <CldUploadButton uploadPreset="next-cloudinary-unsigned" />
 
         <StyledLabel htmlFor="lostLocated">Lost/Located:</StyledLabel>
         <input type="text" id="lostLocated" name="lostLocated" />
