@@ -1,6 +1,6 @@
 import Heading from "../components/Heading";
 import { useContext } from "react";
-import { StateContext } from "./state.js";
+import { StateContext } from "../context/state.js";
 import { CldImage } from "next-cloudinary";
 
 // import PetForm from "../components/Form";
@@ -8,7 +8,7 @@ import { CldImage } from "next-cloudinary";
 
 export default function Home() {
   const [submissions] = useContext(StateContext);
-
+  console.log(submissions);
   return (
     <div>
       <Heading>Find my Pet (working title)</Heading>

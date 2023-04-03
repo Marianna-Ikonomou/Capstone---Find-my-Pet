@@ -3,14 +3,12 @@ import { useState } from "react";
 import React, { useContext } from "react";
 import Image from "next/image";
 import { CldImage, CldOgImage } from "next-cloudinary";
-import { StateContext } from "/pages/state.js";
+import { StateContext } from "../../context/state.js";
+import { CldUploadButton } from "next-cloudinary";
 
 export default function PetForm({ onSubmit }) {
   const [photoUrl, setPhotoUrl] = useState(null);
-  const [submissions, setSubmissions] = useContext(StateContext)(() => {
-    const storedSubmissions = localStorage.getItem("submissions");
-    return storedSubmissions ? JSON.parse(storedSubmissions) : [];
-  });
+  const [submissions, setSubmissions] = useContext(StateContext);
 
   const handleSubmit = (event) => {
     if (event) {
@@ -31,10 +29,10 @@ export default function PetForm({ onSubmit }) {
       contact,
     };
     setSubmissions([...submissions, newSubmission]);
-    localStorage.setItem(
-      "submissions",
-      JSON.stringify([...submissions, newSubmission])
-    );
+    // localStorage.setItem(
+    //   "submissions",
+    //   JSON.stringify([...submissions, newSubmission])
+    // );
 
     onSubmit(newSubmission);
   };
@@ -60,6 +58,7 @@ export default function PetForm({ onSubmit }) {
           accept="image/*"
           onChange={handlePhotoChange}
         />
+        <CldUploadButton uploadPreset="next-cloudinary-unsigned" />
 
         <StyledLabel htmlFor="lostLocated">Lost/Located:</StyledLabel>
         <input type="text" id="lostLocated" name="lostLocated" />

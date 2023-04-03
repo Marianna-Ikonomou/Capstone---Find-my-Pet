@@ -24,7 +24,8 @@
     "react-leaflet": "^4.2.1",
     "react-modal": "^3.16.1",
     "styled-components": "^5.3.8",
-    "swr": "^2.1.0"
+    "swr": "^2.1.0",
+    "use-local-storage-state": "^18.2.1"
   },
   "devDependencies": {
     "@svgr/webpack": "^6.5.1",
