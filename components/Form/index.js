@@ -1,13 +1,13 @@
 import { StyledForm, StyledHeading, StyledLabel } from "./Form.styled.js";
 import { useState } from "react";
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
 import { CldImage, CldOgImage } from "next-cloudinary";
 import { StateContext } from "/pages/state.js";
 
 export default function PetForm({ onSubmit }) {
   const [photoUrl, setPhotoUrl] = useState(null);
-  const [submissions, setSubmissions] = useState(StateContext)(() => {
+  const [submissions, setSubmissions] = useContext(StateContext)(() => {
     const storedSubmissions = localStorage.getItem("submissions");
     return storedSubmissions ? JSON.parse(storedSubmissions) : [];
   });

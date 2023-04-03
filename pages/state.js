@@ -5,7 +5,10 @@ import { useEffect } from "react";
 export const StateContext = React.createContext([]);
 
 export const StateProvider = ({ children }) => {
-  if (typeof window !== "undefined") {
+  if (
+    typeof window !== "undefined" &&
+    typeof window.localStorage !== "undefined"
+  ) {
     const [submissions, setSubmissions] = React.useState(() => {
       const storedSubmissions = localStorage.getItem("submissions");
       return storedSubmissions ? JSON.parse(storedSubmissions) : [];
