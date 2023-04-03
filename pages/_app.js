@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import Home from "./index.js";
 import "./App.css";
 import PlussButton from "../components/Buttons/buttons.js";
+import { StateProvider } from "./state.js";
 
 // import SimpleMap from "../components/Map/googleMap.js";
 // import Map from "../components/Map/index.js";
@@ -12,7 +13,7 @@ export default function App() {
   const router = useRouter();
 
   return (
-    <>
+    <StateProvider>
       <Head>
         <title>Capstone Project</title>
       </Head>
@@ -26,6 +27,6 @@ export default function App() {
         <PlussButton />
       </main>
       <Home />
-    </>
+    </StateProvider>
   );
 }

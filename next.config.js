@@ -5,16 +5,10 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+
   images: {
-    remotePatterns: [
-      // {
-      //   protocol: 'https',
-      //   hostname: 'images.unsplash.com'
-      // },
-    ],
-  },
-  images: {
-    domains: ["res.cloudinary.com"],
+    loader: "cloudinary",
+    path: "https://res.cloudinary.com/dqkllpzwy/image/upload",
   },
 };
 

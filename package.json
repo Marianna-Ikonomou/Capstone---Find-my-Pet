@@ -11,12 +11,14 @@
     "test:watch": "jest --watchAll"
   },
   "dependencies": {
+    "@cloudinary/react": "^1.11.2",
+    "@cloudinary/url-gen": "^1.9.2",
     "eslint": "8.35.0",
     "eslint-config-next": "13.2.3",
     "google-map-react": "^2.2.0",
     "leaflet": "^1.9.3",
     "next": "13.2.3",
-    "next-cloudinary": "^4.0.2",
+    "next-cloudinary": "^4.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-leaflet": "^4.2.1",

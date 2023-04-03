@@ -2,10 +2,12 @@ import { StyledForm, StyledHeading, StyledLabel } from "./Form.styled.js";
 import { useState } from "react";
 import React from "react";
 import Image from "next/image";
+import { CldImage, CldOgImage } from "next-cloudinary";
+import { StateContext } from "/pages/state.js";
 
 export default function PetForm({ onSubmit }) {
   const [photoUrl, setPhotoUrl] = useState(null);
-  const [submissions, setSubmissions] = useState(() => {
+  const [submissions, setSubmissions] = useState(StateContext)(() => {
     const storedSubmissions = localStorage.getItem("submissions");
     return storedSubmissions ? JSON.parse(storedSubmissions) : [];
   });
@@ -23,7 +25,7 @@ export default function PetForm({ onSubmit }) {
 
     const newSubmission = {
       lostLocated,
-      photo: `https://res.cloudinary.com/your-cloud-name/image/upload/${photo.public_id}`,
+      photo: `https://res.cloudinary.com/dqkllpzwy/image/upload/${photo.public_id}`,
       name,
       description,
       contact,
@@ -81,7 +83,7 @@ export default function PetForm({ onSubmit }) {
                 <h1>{submission.lostLocated}</h1>
               </p>
               {submission.photo && (
-                <Image
+                <CldImage
                   src={submission.photo}
                   alt="Pet"
                   width="200"
