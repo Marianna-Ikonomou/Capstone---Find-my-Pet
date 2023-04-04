@@ -1,22 +1,12 @@
 import { StyledForm, StyledHeading, StyledLabel } from "./Form.styled.js";
 import { useState } from "react";
 import React, { useContext } from "react";
-import Image from "next/image";
-import { CldImage, CldOgImage } from "next-cloudinary";
+import { CldImage, CldUploadButton } from "next-cloudinary";
 import { StateContext } from "../../context/state.js";
-import { createClient } from "next-cloudinary";
 
 export default function PetForm({ onSubmit }) {
   const [photoUrl, setPhotoUrl] = useState(null);
   const [submissions, setSubmissions] = useContext(StateContext);
-
-  const cloudinary = createClient({
-    cloud: {
-      cloudName: "dqkllpzwy",
-      apiKey: "186634241844163",
-      apiSecret: "bIg8N0waTTc-2wVp0I4-Z4fXc5A",
-    },
-  });
 
   const handleSubmit = async (event) => {
     if (event) {
@@ -43,13 +33,10 @@ export default function PetForm({ onSubmit }) {
       contact,
     };
     setSubmissions([...submissions, newSubmission]);
-    // localStorage.setItem(
-    //   "submissions",
-    //   JSON.stringify([...submissions, newSubmission])
-    // );
-
     onSubmit(newSubmission);
   };
+
+  const [publicId, setPublicId] = useState(null);
 
   const handlePhotoChange = (event) => {
     const file = event.target.files[0];
@@ -65,12 +52,17 @@ export default function PetForm({ onSubmit }) {
           <StyledHeading>Lost</StyledHeading>
         </legend>
         <StyledLabel htmlFor="photo">Photo: </StyledLabel>
-        <input
-          type="file"
-          id="photo"
-          name="photo"
-          accept="image/*"
-          onChange={handlePhotoChange}
+
+        <CldUploadButton
+          onUpload={(result) => {
+            if (result.event === "success") {
+              setPublicId(result.info.public_id);
+            }
+          }}
+          onError={(error, widget) => {
+            console.log("error", error);
+          }}
+          uploadPreset="jvkne0m7"
         />
 
         <StyledLabel htmlFor="lostLocated">Lost/Located:</StyledLabel>
@@ -94,13 +86,8 @@ export default function PetForm({ onSubmit }) {
               <p>
                 <h1>{submission.lostLocated}</h1>
               </p>
-              {submission.photo && (
-                <CldImage
-                  src={submission.photo}
-                  alt="Pet"
-                  width="200"
-                  height="150"
-                />
+              {publicId && (
+                <CldImage src={publicId} alt="Pet" width="200" height="150" />
               )}
               <p>
                 <h2>{submission.name}</h2>
@@ -116,3 +103,11 @@ export default function PetForm({ onSubmit }) {
     </StyledForm>
   );
 }
+/*    <input
+          type="file"
+          id="photo"
+          name="photo"
+          accept="image/*"
+          onChange={handlePhotoChange}
+        />
+ */
