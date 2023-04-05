@@ -25,6 +25,12 @@ export default function PetForm({ onSubmit }) {
     };
     setSubmissions([...submissions, newSubmission]);
   };
+  const handleDelete = (index) => {
+    const newSubmissions = [...submissions];
+    newSubmissions.splice(index, 1);
+    setSubmissions(newSubmissions);
+  };
+
   const handlePhotoChange = (event) => {
     const file = event.target.files[0];
     const url = URL.createObjectURL(file);
@@ -112,6 +118,7 @@ export default function PetForm({ onSubmit }) {
                 <h4>Description: {submission.description}</h4>
               </p>
               <p>Contact: {submission.contact}</p>
+              <button onClick={() => handleDelete(index)}>Delete</button>
             </li>
           ))}
         </ul>

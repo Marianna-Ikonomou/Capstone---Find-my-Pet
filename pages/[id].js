@@ -1,5 +1,6 @@
 import PetForm from "../components/Form";
 import { useRouter } from "next/router";
+import useSWRMutation from "swr/mutation";
 
 export default function PetDetailsPage() {
   const router = useRouter();
@@ -24,17 +25,19 @@ export default function PetDetailsPage() {
     }
   }
 }
-async function handleEditPet(event) {
-  event.preventDefault();
-  const formData = new FormData(event.target);
-  const productData = Object.fromEntries(formData);
 
-  await trigger(productData);
-  push("/");
-
-  return (
-    <>
-      <PetForm onSubmit={handleEditPet} />
-    </>
-  );
+async function handleDeletePet(event) {
+  const response = await fetch(`/api/products/${id}`, {
+    method: "DELETE",
+  });
+  if (response.ok) {
+    await response.json();
+    push("/");
+  } else {
+    return (
+      <>
+        <PetForm onDelete={handleDeletePet} onSubmit={handleEditPet} />
+      </>
+    );
+  }
 }
