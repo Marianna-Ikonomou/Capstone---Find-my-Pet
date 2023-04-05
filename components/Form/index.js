@@ -7,37 +7,24 @@ import { StateContext } from "../../context/state.js";
 export default function PetForm({ onSubmit }) {
   const [photoUrl, setPhotoUrl] = useState(null);
   const [submissions, setSubmissions] = useContext(StateContext);
+  const [publicId, setPublicId] = useState(null);
+  const [lostLocated, setLostLocated] = useState(null);
+  const [name, setName] = useState(null);
+  const [description, setDescription] = useState(null);
+  const [contact, setContact] = useState(null);
 
   const handleSubmit = async (event) => {
-    if (event) {
-      event.preventDefault();
-    }
-
-    const lostLocated = document.getElementById("lostLocated").value;
-    const photo = document.getElementById("photo").files[0];
-    const name = document.getElementById("name").value;
-    const description = document.getElementById("description").value;
-    const contact = document.getElementById("contact").value;
-
-    const result = await cloudinary.uploader.upload(photo, {
-      folder: "my_folder",
-      use_filename: true,
-      unique_filename: false,
-    });
+    event.preventDefault();
 
     const newSubmission = {
-      lostLocated,
-      photo: result.secure_url,
-      name,
-      description,
-      contact,
+      lostLocated: lostLocated,
+      name: name,
+      description: description,
+      contact: contact,
+      cloudinaryId: publicId,
     };
     setSubmissions([...submissions, newSubmission]);
-    onSubmit(newSubmission);
   };
-
-  const [publicId, setPublicId] = useState(null);
-
   const handlePhotoChange = (event) => {
     const file = event.target.files[0];
     const url = URL.createObjectURL(file);
@@ -66,28 +53,57 @@ export default function PetForm({ onSubmit }) {
         />
 
         <StyledLabel htmlFor="lostLocated">Lost/Located:</StyledLabel>
-        <input type="text" id="lostLocated" name="lostLocated" />
+        <input
+          type="text"
+          id="lostLocated"
+          name="lostLocated"
+          value={lostLocated}
+          onChange={(event) => setLostLocated(event.target.value)}
+        />
 
         <StyledLabel htmlFor="name">Pets Name:</StyledLabel>
-        <input type="text" id="name" name="name" />
+        <input
+          type="text"
+          id="name"
+          name="name"
+          value={name}
+          onChange={(event) => setName(event.target.value)}
+        />
 
         <StyledLabel htmlFor="description">Description:</StyledLabel>
-        <input type="text" id="description" name="description" />
+        <input
+          type="text"
+          id="description"
+          name="description"
+          value={description}
+          onChange={(event) => setDescription(event.target.value)}
+        />
 
         <StyledLabel htmlFor="contact">Contact Information:</StyledLabel>
-        <input type="text" id="contact" name="contact" />
+        <input
+          type="text"
+          id="contact"
+          name="contact"
+          value={contact}
+          onChange={(event) => setContact(event.target.value)}
+        />
       </fieldset>
       <button onClick={handleSubmit}>Post</button>
 
       {submissions.length > 0 && (
-        <ul class="no-bullets">
+        <ul className="no-bullets">
           {submissions.map((submission, index) => (
             <li key={index}>
               <p>
                 <h1>{submission.lostLocated}</h1>
               </p>
-              {publicId && (
-                <CldImage src={publicId} alt="Pet" width="200" height="150" />
+              {submission.cloudinaryId && (
+                <CldImage
+                  src={submission.cloudinaryId}
+                  alt="Pet"
+                  width="200"
+                  height="130"
+                />
               )}
               <p>
                 <h2>{submission.name}</h2>
@@ -103,11 +119,3 @@ export default function PetForm({ onSubmit }) {
     </StyledForm>
   );
 }
-/*    <input
-          type="file"
-          id="photo"
-          name="photo"
-          accept="image/*"
-          onChange={handlePhotoChange}
-        />
- */
