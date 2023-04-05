@@ -2,10 +2,86 @@ import { StyledForm, StyledHeading, StyledLabel } from "./Form.styled.js";
 import { useState } from "react";
 import React from "react";
 import Image from "next/image.js";
+import {
+  PDFDownloadLink,
+  Page,
+  Text,
+  View,
+  Document,
+  StyleSheet,
+  Image as PDFImage,
+} from "@react-pdf/renderer";
 
 export default function PetForm({ onSubmit }) {
   const [photoUrl, setPhotoUrl] = useState(null);
   const [submissions, setSubmissions] = useState([]);
+
+  const [showPDFDownloadLink, setShowPDFDownloadLink] = useState(false);
+
+  const generatePDF = () => {
+    const styles = StyleSheet.create({
+      page: {
+        flexDirection: "column",
+        padding: 10,
+      },
+      section: {
+        margin: 10,
+        padding: 10,
+      },
+      heading: {
+        fontSize: 20,
+        fontWeight: "bold",
+        marginBottom: 10,
+      },
+      label: {
+        fontSize: 16,
+        fontWeight: "bold",
+        marginBottom: 5,
+      },
+      text: {
+        fontSize: 14,
+        marginBottom: 10,
+      },
+      input: {
+        marginBottom: 20,
+        padding: 5,
+        borderRadius: 5,
+        border: "1px solid #ccc",
+        fontSize: 14,
+      },
+      image: {},
+    });
+
+    const pdfDoc = (
+      <Document>
+        <Page size="A4" style={styles.page}>
+          <View style={styles.section}>
+            <Text style={styles.heading}>
+              {document.getElementById("lostLocated").value}
+            </Text>
+
+            {photoUrl && (
+              <PDFImage style={{ marginBottom: 10 }} src={photoUrl} alt="Pet" />
+            )}
+
+            <Text style={styles.text}>
+              {document.getElementById("name").value}
+            </Text>
+
+            <Text style={styles.text}>
+              {document.getElementById("description").value}
+            </Text>
+            <Text style={styles.label}>Contact Information:</Text>
+            <Text style={styles.text}>
+              {document.getElementById("contact").value}
+            </Text>
+          </View>
+        </Page>
+      </Document>
+    );
+
+    return pdfDoc;
+  };
 
   const handleSubmit = (event) => {
     if (event) {
@@ -18,10 +94,6 @@ export default function PetForm({ onSubmit }) {
     const description = document.getElementById("description").value;
     const contact = document.getElementById("contact").value;
 
-    console.log(
-      `Submitting lostLocated: ${lostLocated} photo: ${photo} name: ${name} description: ${description} contact: ${contact}`
-    );
-
     const newSubmission = {
       lostLocated,
       photo: URL.createObjectURL(photo),
@@ -30,8 +102,14 @@ export default function PetForm({ onSubmit }) {
       contact,
     };
     setSubmissions([...submissions, newSubmission]);
+    localStorage.setItem(
+      "submissions",
+      JSON.stringify([...submissions, newSubmission])
+    );
 
     onSubmit(newSubmission);
+
+    setShowPDFDownloadLink(true);
   };
 
   const handlePhotoChange = (event) => {
@@ -54,6 +132,12 @@ export default function PetForm({ onSubmit }) {
           accept="image/*"
           onChange={handlePhotoChange}
         />
+
+        {photoUrl && (
+          <div className={Image}>
+            <PDFImage src={photoUrl} width={200} height={150} alt="Pet" />
+          </div>
+        )}
 
         <StyledLabel htmlFor="lostLocated">Lost/Located:</StyledLabel>
         <input type="text" id="lostLocated" name="lostLocated" />
@@ -86,12 +170,17 @@ export default function PetForm({ onSubmit }) {
                 <h2>{submission.name}</h2>
               </p>
               <p>
-                <h4>Description: {submission.description}</h4>
+                <h4>{submission.description}</h4>
               </p>
               <p>Contact: {submission.contact}</p>
             </li>
           ))}
         </ul>
+      )}
+      {showPDFDownloadLink && (
+        <PDFDownloadLink document={generatePDF()} fileName="pet-form.pdf">
+          Download PDF
+        </PDFDownloadLink>
       )}
     </StyledForm>
   );
