@@ -3,12 +3,11 @@ import { useContext } from "react";
 import { StateContext } from "../context/state.js";
 import { CldImage } from "next-cloudinary";
 
-// import PetForm from "../components/Form";
 // import Map from "../components/Map";
 
 export default function Home() {
   const [submissions] = useContext(StateContext);
-  console.log(submissions);
+
   return (
     <div>
       <Heading>Find my Pet (working title)</Heading>
@@ -19,19 +18,19 @@ export default function Home() {
               <p>
                 <h1>{submission.lostLocated}</h1>
               </p>
-              {submission.photo && (
+              {submission.cloudinaryId && (
                 <CldImage
-                  src={submission.photo}
+                  src={submission.cloudinaryId}
                   alt="Pet"
                   width="200"
-                  height="150"
+                  height="130"
                 />
               )}
               <p>
                 <h2>{submission.name}</h2>
               </p>
               <p>
-                <h4>Description: {submission.description}</h4>
+                <h4>{submission.description}</h4>
               </p>
               <p>Contact: {submission.contact}</p>
             </li>
