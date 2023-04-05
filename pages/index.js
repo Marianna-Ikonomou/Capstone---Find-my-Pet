@@ -1,5 +1,5 @@
 import Heading from "../components/Heading";
-// import PetForm from "../components/Form";
+
 // import Map from "../components/Map";
 
 export default function Home() {
@@ -11,4 +11,3 @@ export default function Home() {
     </>
   );
 }
-//<PetForm onSubmit={handleAddProduct} />
