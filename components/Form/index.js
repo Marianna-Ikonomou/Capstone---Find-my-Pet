@@ -3,6 +3,16 @@ import { useState } from "react";
 import React, { useContext } from "react";
 import { CldImage, CldUploadButton } from "next-cloudinary";
 import { StateContext } from "../../context/state.js";
+import Image from "next/image.js";
+import {
+  PDFDownloadLink,
+  Page,
+  Text,
+  View,
+  Document,
+  StyleSheet,
+  Image as PDFImage,
+} from "@react-pdf/renderer";
 
 export default function PetForm({ onSubmit }) {
   const [photoUrl, setPhotoUrl] = useState(null);
@@ -57,6 +67,12 @@ export default function PetForm({ onSubmit }) {
           }}
           uploadPreset="jvkne0m7"
         />
+
+        {photoUrl && (
+          <div className={Image}>
+            <PDFImage src={photoUrl} width={200} height={150} alt="Pet" />
+          </div>
+        )}
 
         <StyledLabel htmlFor="lostLocated">Lost/Located:</StyledLabel>
         <input
@@ -115,13 +131,18 @@ export default function PetForm({ onSubmit }) {
                 <h2>{submission.name}</h2>
               </p>
               <p>
-                <h4>Description: {submission.description}</h4>
+                <h4>{submission.description}</h4>
               </p>
               <p>Contact: {submission.contact}</p>
               <button onClick={() => handleDelete(index)}>Delete</button>
             </li>
           ))}
         </ul>
+      )}
+      {showPDFDownloadLink && (
+        <PDFDownloadLink document={generatePDF()} fileName="pet-form.pdf">
+          Download PDF
+        </PDFDownloadLink>
       )}
     </StyledForm>
   );
