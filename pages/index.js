@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div>
       <Heading>Find my Pet (working title)</Heading>
-      {submissions.length > 0 && (
+      {submissions && submissions.length > 0 && (
         <ul className="no-bullets">
           {submissions.map((submission, index) => (
             <li key={index}>
