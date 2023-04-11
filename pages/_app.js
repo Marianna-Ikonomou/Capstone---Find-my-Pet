@@ -5,22 +5,31 @@ import Home from "./index.js";
 import "./App.css";
 import PlussButton from "../components/Buttons/buttons.js";
 import { StateProvider } from "../context/state.js";
-import Map from "../components/Map/index.js";
-// import SimpleMap from "../components/Map/googleMap.js";
+import dynamic from "next/dynamic";
 
-export default function App() {
+const App = () => {
+  const center = [53.5674, 10.034];
+  const zoom = 10;
   const router = useRouter();
+
+  const Map = dynamic(() => import("../components/Map/index.js"), {
+    ssr: false,
+  });
 
   return (
     <StateProvider>
       <Head>
         <title>Capstone Project</title>
       </Head>
-      <Map />
+
       <section>
         <button type="button">Lost</button>
         <button type="button">Located</button>
       </section>
+
+      <div>
+        <Map center={center} zoom={zoom} />
+      </div>
 
       <main>
         <PlussButton />
@@ -28,4 +37,5 @@ export default function App() {
       <Home />
     </StateProvider>
   );
-}
+};
+export default App;
