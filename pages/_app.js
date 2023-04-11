@@ -5,7 +5,7 @@ import Home from "./index.js";
 import "./App.css";
 import PlussButton from "../components/Buttons/buttons.js";
 import { StateProvider } from "../context/state.js";
-// import Map from "../components/Map/index.js";
+import Map from "../components/Map/index.js";
 // import SimpleMap from "../components/Map/googleMap.js";
 
 export default function App() {
@@ -16,7 +16,7 @@ export default function App() {
       <Head>
         <title>Capstone Project</title>
       </Head>
-
+      <Map />
       <section>
         <button type="button">Lost</button>
         <button type="button">Located</button>
