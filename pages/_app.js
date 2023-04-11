@@ -9,7 +9,7 @@ import dynamic from "next/dynamic";
 
 const App = () => {
   const center = [53.5674, 10.034];
-  const zoom = 10;
+  const zoom = 11;
   const router = useRouter();
 
   const Map = dynamic(() => import("../components/Map/index.js"), {

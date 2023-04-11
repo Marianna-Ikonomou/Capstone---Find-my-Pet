@@ -3,11 +3,11 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
-const Map = ({ center = [53.5674, 10.034], zoom = 10 }) => {
+const Map = ({ center = [53.5674, 10.034], zoom = 11 }) => {
   const locationMap = useRef(null);
 
   useEffect(() => {
-    const myMap = L.map(locationMap.current).setView([0, 0], 13);
+    const myMap = L.map(locationMap.current).setView([0, 0], 11);
 
     return () => {
       myMap.remove();
