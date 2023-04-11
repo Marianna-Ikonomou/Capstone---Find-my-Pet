@@ -28,7 +28,12 @@ const App = () => {
       </section>
 
       <div>
-        <Map center={center} zoom={zoom} />
+        <Map
+          center={center}
+          zoom={zoom}
+          scrollWheelZoom={false}
+          zoomControl={true}
+        />
       </div>
 
       <main>
