@@ -73,6 +73,9 @@ input {
   height: 200px;
 }
 
+div {
+  border-radius: 10px;
+}
 /* 
 .center-image {
   width: 50%;
