@@ -120,6 +120,7 @@ export default function PetForm({ onSubmit }) {
               </p>
               <p>Contact: {submission.contact}</p>
               <button onClick={() => handleDelete(index)}>Delete</button>
+              <button>Pin location</button>
             </li>
           ))}
         </ul>
