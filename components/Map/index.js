@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   MapContainer,
   TileLayer,
@@ -10,7 +10,14 @@ import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 
 const Map = ({ center = [53.5674, 10.034], zoom = 11 }) => {
-  const [markers, setMarkers] = useState([]);
+  const [markers, setMarkers] = useState(() => {
+    const storedMarkers = localStorage.getItem("markers");
+    return storedMarkers ? JSON.parse(storedMarkers) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("markers", JSON.stringify(markers));
+  }, [markers]);
 
   const customIcon = L.icon({
     iconUrl: "https://unpkg.com/leaflet@1.5.1/dist/images/marker-icon.png",
@@ -26,9 +33,17 @@ const Map = ({ center = [53.5674, 10.034], zoom = 11 }) => {
   const Markers = () =>
     markers.map((position, idx) => (
       <Marker key={`marker-${idx}`} position={position} icon={customIcon}>
-        <Popup>{`Marker ${idx + 1}`}</Popup>
+        <Popup>
+          {`Marker ${idx + 1}`}
+          <br />
+          <button onClick={() => handleMarkerDelete(idx)}>Delete</button>
+        </Popup>
       </Marker>
     ));
+
+  const handleMarkerDelete = (index) => {
+    setMarkers((markers) => markers.filter((_, idx) => idx !== index));
+  };
 
   const LocationMarker = () => {
     useMapEvents({
