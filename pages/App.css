@@ -25,6 +25,7 @@ button {
   background-color: rgb(19, 116, 128);
   font-weight: 500;
   color: white;
+  margin: 20px;
 }
 
 legend {
@@ -68,11 +69,14 @@ input {
   border-radius: 6px;
 }
 
-/* Map {
-  width: 40%;
-  height: 40%;
+.leaflet-container {
+  height: 200px;
 }
 
+div {
+  border-radius: 10px;
+}
+/* 
 .center-image {
   width: 50%;
   height: 50%;

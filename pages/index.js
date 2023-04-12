@@ -3,14 +3,13 @@ import { useContext } from "react";
 import { StateContext } from "../context/state.js";
 import { CldImage } from "next-cloudinary";
 
-// import Map from "../components/Map";
-
 export default function Home() {
   const [submissions] = useContext(StateContext);
 
   return (
     <div>
       <Heading>Find my Pet (working title)</Heading>
+
       {submissions && submissions.length > 0 && (
         <ul className="no-bullets">
           {submissions.map((submission, index) => (
