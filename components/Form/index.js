@@ -24,6 +24,7 @@ export default function PetForm({ onSubmit }) {
       cloudinaryId: publicId,
     };
     setSubmissions([...submissions, newSubmission]);
+    onSubmit(newSubmission);
   };
   const handleDelete = (index) => {
     const newSubmissions = [...submissions];

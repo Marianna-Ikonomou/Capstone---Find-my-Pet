@@ -16,7 +16,7 @@ const Map = ({ center = [53.5674, 10.034], zoom = 11 }) => {
     });
 
     myMap.on("dblclick", (event) => {
-      myMap.zoomOut();
+      myMap.zoomIn();
     });
 
     return () => {

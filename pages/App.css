@@ -25,6 +25,7 @@ button {
   background-color: rgb(19, 116, 128);
   font-weight: 500;
   color: white;
+  margin: 20px;
 }
 
 legend {
@@ -72,11 +73,7 @@ input {
   height: 200px;
 }
 
-/* Map {
-  width: 40%;
-  height: 40%;
-}
-
+/* 
 .center-image {
   width: 50%;
   height: 50%;

@@ -23,8 +23,8 @@ const App = () => {
       </Head>
 
       <section>
-        <button type="button">Lost</button>
-        <button type="button">Located</button>
+        {/* <button type="button">Lost</button>
+        <button type="button">Located</button> */}
       </section>
 
       <div>
