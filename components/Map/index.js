@@ -5,10 +5,10 @@ import L from "leaflet";
 
 const Map = ({ center = [53.5674, 10.034], zoom = 11 }) => {
   const customIcon = L.icon({
-    iconUrl: "./location-pin.png",
-    iconSize: [30, 30],
-    iconAnchor: [15, 30],
-    popupAnchor: [0, -30],
+    iconUrl: "https://unpkg.com/leaflet@1.5.1/dist/images/marker-icon.png",
+    iconSize: [25, 41],
+    iconAnchor: [10, 41],
+    popupAnchor: [2, -40],
   });
 
   return (
