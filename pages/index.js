@@ -8,7 +8,7 @@ export default function Home() {
 
   return (
     <div>
-      <Heading>Find my Pet (working title)</Heading>
+      <Heading>Find my Pet</Heading>
 
       {submissions && submissions.length > 0 && (
         <ul className="no-bullets">
