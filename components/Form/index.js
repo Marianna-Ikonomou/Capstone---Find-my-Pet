@@ -12,6 +12,7 @@ export default function PetForm({ onSubmit }) {
   const [name, setName] = useState(null);
   const [description, setDescription] = useState(null);
   const [contact, setContact] = useState(null);
+  const [location, setLocation] = useState(null);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -22,6 +23,7 @@ export default function PetForm({ onSubmit }) {
       description: description,
       contact: contact,
       cloudinaryId: publicId,
+      location: location,
     };
     setSubmissions([...submissions, newSubmission]);
     onSubmit(newSubmission);
@@ -39,6 +41,14 @@ export default function PetForm({ onSubmit }) {
     setPhotoUrl(url);
   };
 
+  const handleLocationChange = (event) => {
+    setLocation(event.target.value);
+  };
+
+  const handleMapClick = (latlng) => {
+    setLocation(latlng);
+  };
+
   return (
     <StyledForm>
       <fieldset>
@@ -53,9 +63,7 @@ export default function PetForm({ onSubmit }) {
               setPublicId(result.info.public_id);
             }
           }}
-          onError={(error, widget) => {
-            console.log("error", error);
-          }}
+          onError={(error, widget) => {}}
           uploadPreset="jvkne0m7"
         />
 
@@ -66,6 +74,15 @@ export default function PetForm({ onSubmit }) {
           name="lostLocated"
           value={lostLocated}
           onChange={(event) => setLostLocated(event.target.value)}
+        />
+
+        <StyledLabel htmlFor="location">Location:</StyledLabel>
+        <input
+          type="text"
+          id="location"
+          name="location"
+          value={location}
+          onChange={handleLocationChange}
         />
 
         <StyledLabel htmlFor="name">Pets Name:</StyledLabel>
@@ -120,7 +137,6 @@ export default function PetForm({ onSubmit }) {
               </p>
               <p>Contact: {submission.contact}</p>
               <button onClick={() => handleDelete(index)}>Delete</button>
-              <button>Pin location</button>
             </li>
           ))}
         </ul>

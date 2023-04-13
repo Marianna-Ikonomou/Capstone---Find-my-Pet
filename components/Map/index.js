@@ -29,20 +29,49 @@ const Map = ({ center = [53.5674, 10.034], zoom = 11 }) => {
   const addMarker = (e) => {
     setMarkers((markers) => [...markers, e.latlng]);
   };
+  const [popupContent, setPopupContent] = useState("");
 
   const Markers = () =>
     markers.map((position, idx) => (
       <Marker key={`marker-${idx}`} position={position} icon={customIcon}>
         <Popup>
-          {`Marker ${idx + 1}`}
+          <textarea
+            value={popupContent}
+            onChange={(e) => setPopupContent(e.target.value)}
+            placeholder="text"
+          />
           <br />
-          <button onClick={() => handleMarkerDelete(idx)}>Delete</button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              deleteMarker(idx);
+            }}
+          >
+            Delete
+          </button>{" "}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              saveMarker(idx);
+            }}
+          >
+            Save
+          </button>
         </Popup>
       </Marker>
     ));
 
-  const handleMarkerDelete = (index) => {
-    setMarkers((markers) => markers.filter((_, idx) => idx !== index));
+  const saveMarker = (idx) => {
+    setMarkers((markers) => {
+      const newMarkers = [...markers];
+      newMarkers[idx] = { ...newMarkers[idx], popupContent };
+      localStorage.setItem("markers", JSON.stringify(newMarkers));
+      return newMarkers;
+    });
+  };
+
+  const deleteMarker = (idx) => {
+    setMarkers((markers) => markers.filter((_, i) => i !== idx));
   };
 
   const LocationMarker = () => {
