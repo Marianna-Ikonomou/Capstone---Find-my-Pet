@@ -140,7 +140,7 @@ export default function PetForm({ onSubmit }) {
     <StyledForm>
       <fieldset>
         <legend>
-          <StyledHeading>Lost</StyledHeading>
+          <StyledHeading>Flyer</StyledHeading>
         </legend>
         <StyledLabel htmlFor="photo">Photo: </StyledLabel>
 
