@@ -19,7 +19,7 @@ function PlussButton() {
 
   return (
     <>
-      <button onClick={openModal}> + </button>
+      <button onClick={openModal}> Create Flyer </button>
       <Modal isOpen={modalIsOpen} onRequestClose={closeModal}>
         <PetForm onSubmit={handleAddProduct} />
       </Modal>
