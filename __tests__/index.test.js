@@ -1,12 +1,16 @@
-import Home from "../pages";
-import { render, screen } from "@testing-library/react";
+import React from "react";
+import { render } from "@testing-library/react";
+import Home from "../pages/index.js";
+import { StateProvider } from "../context/state.js";
 
-describe("Home", () => {
-  test("renders heading", () => {
-    render(<Home />);
-    const headingElement = screen.getByRole("heading", {
-      name: "Find my Pet (working title)",
-    });
-    expect(headingElement).toBeInTheDocument();
+describe("Home component", () => {
+  it("renders the 'Find my Pet' heading", () => {
+    const { getByText } = render(
+      <StateProvider>
+        <Home />
+      </StateProvider>
+    );
+    const heading = getByText("Find my Pet");
+    expect(heading).toBeInTheDocument();
   });
 });
